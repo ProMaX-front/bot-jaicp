@@ -4,19 +4,32 @@ theme: /
 
     state: Start
         q!: $regex</start>
-        a: Начнём.
-
-    state: Hello
-        intent!: /привет
-        a: Привет привет
-
-    state: Bye
-        intent!: /пока
-        a: Пока пока
+        a: Добро пожаловать в хату. Представься народу
+        
+        state: Melon
+            q: melon
+            a: Знаем такого. Проходи бродяга, падай. По какой статье приняли?
+            
+            state: left
+                q: * *лево*
+                a: Не одобряем! Живи оглядывайся, пес.
+            
+            state: right
+                q: * *право*
+                a: Так... Ладно, пока располагайся. 
+            
+            state: forward
+                q: * *прямо*
+                a: Понятно, свой пацан. Заходи братка.
+        
+        state: NoMatch
+            event!: noMatch
+            a: Попробуйте сказать это на пацанском(четком).
+            
 
     state: NoMatch
         event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+        a: Попробуйте сказать это на пацанском(четком).
 
     state: Match
         event!: match
